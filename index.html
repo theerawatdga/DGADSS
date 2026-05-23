@@ -21,49 +21,41 @@
     </style>
 </head>
 <body class="tail-container bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navbar -->
     <nav class="bg-white dark:bg-gray-800 border-b sticky top-0 z-50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="flex items-center justify-between h-16">
-            <div class="flex items-center gap-x-3">
-                <img src="DGALogo.png" alt="DGA" class="h-10">
-                <div>
-                    <h1 class="text-xl font-semibold text-[#0b3d91]">DGA</h1>
-                    <p class="text-xs -mt-1">Digital Service Standard</p>
-                </div>
-            </div>
-
-            <div class="flex items-center gap-x-8 text-sm font-medium">
-                <a onclick="navigateTo('home')" class="flex items-center gap-x-2 hover:text-[#0b3d91]">
-                    <i class="fa-solid fa-home"></i> หน้าแรก
-                </a>
-                <a onclick="navigateTo('controls')" class="flex items-center gap-x-2 hover:text-[#0b3d91]">
-                    <i class="fa-solid fa-list-check"></i> มาตรการควบคุม
-                </a>
-                <a onclick="navigateTo('impact')" class="flex items-center gap-x-2 hover:text-[#0b3d91]">
-                    <i class="fa-solid fa-chart-bar"></i> ประเมินผลกระทบ
-                </a>
-                <a onclick="navigateTo('download')" class="flex items-center gap-x-2 hover:text-[#0b3d91]">
-                    <i class="fa-solid fa-download"></i> ดาวน์โหลดมาตรฐาน
-                </a>
-
-                <button onclick="toggleDarkMode()" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
-                </button>
-
-                <div class="flex items-center text-xs bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-2xl">
-                    <i class="fa-solid fa-eye mr-1"></i>
-                    <span id="visitor-count">1,269</span>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-x-3">
+                    <img src="DGALogo.png" alt="DGA" class="h-10">
+                    <div>
+                        <h1 class="text-xl font-semibold text-[#0b3d91]">DGA</h1>
+                        <p class="text-xs -mt-1">Digital Service Standard</p>
+                    </div>
                 </div>
 
-                <button onclick="showAdminModal()" class="flex items-center gap-x-2 bg-[#0b3d91] text-white px-5 py-2 rounded-2xl hover:bg-[#0a2e70]">
-                    <i class="fa-solid fa-upload"></i>
-                    <span>อัปโหลด Excel</span>
-                </button>
+                <div class="flex items-center gap-x-8 text-sm font-medium">
+                    <a onclick="navigateTo('home')" class="flex items-center gap-x-2 hover:text-[#0b3d91]"><i class="fa-solid fa-home"></i> หน้าแรก</a>
+                    <a onclick="navigateTo('controls')" class="flex items-center gap-x-2 hover:text-[#0b3d91]"><i class="fa-solid fa-list-check"></i> มาตรการควบคุม</a>
+                    <a onclick="navigateTo('impact')" class="flex items-center gap-x-2 hover:text-[#0b3d91]"><i class="fa-solid fa-chart-bar"></i> ประเมินผลกระทบ</a>
+                    <a onclick="navigateTo('download')" class="flex items-center gap-x-2 hover:text-[#0b3d91]"><i class="fa-solid fa-download"></i> ดาวน์โหลดมาตรฐาน</a>
+
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+
+                    <div class="flex items-center text-xs bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-2xl">
+                        <i class="fa-solid fa-eye mr-1"></i>
+                        <span id="visitor-count">1,275</span>
+                    </div>
+
+                    <button onclick="showAdminModal()" class="flex items-center gap-x-2 bg-[#0b3d91] text-white px-5 py-2 rounded-2xl hover:bg-[#0a2e70]">
+                        <i class="fa-solid fa-upload"></i>
+                        <span>อัปโหลด Excel</span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
     <!-- MAIN CONTENT -->
     <main class="max-w-7xl mx-auto px-6 py-10">
         
