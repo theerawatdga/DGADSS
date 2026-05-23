@@ -14,7 +14,25 @@
         body { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
         .page { display: none; }
         .page.active { display: block; }
-            /* ปรับ Dropdown ให้สวยทั้ง Light และ Dark Mode */
+        
+    /* ==================== DARK MODE FIX ==================== */
+    .dark .text-[#0b3d91] {
+        color: #60a5fa !important;     /* สีฟ้าอ่อนที่ชัดเจนในโหมดมืด */
+    }
+
+    .dark h1, .dark h2, .dark h3 {
+        color: #f1f5f9 !important;     /* สีขาวอ่อนสำหรับหัวข้อ */
+    }
+
+    .dark .font-semibold {
+        color: #e0f2fe;
+    }
+
+    /* ปรับสีพื้นหลังและข้อความอื่นๆ ให้สบายตา */
+    .dark .bg-white {
+        background-color: #1f2937 !important;
+    }
+    /* ปรับ Dropdown ให้สวยทั้ง Light และ Dark Mode */
     select {
         background-color: #ffffff;
         color: #111827;
@@ -38,6 +56,8 @@
         border-color: #0b3d91;
         box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.2);
     }
+
+        
     </style>
     
     
