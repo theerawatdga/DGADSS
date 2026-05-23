@@ -14,9 +14,6 @@
         body { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
         .page { display: none; }
         .page.active { display: block; }
-        .modal { animation: modalPop 0.3s ease; }
-        @keyframes modalPop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .control-row:hover { background-color: #f8fafc; }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -465,9 +462,35 @@ function resetImpact() {
     document.getElementById('impact-badge').innerHTML = '';
 }
 
-        
+           // ==================== DARK MODE ====================
+        function initDarkMode() {
+            // ตั้งค่า Tailwind ให้ใช้ dark mode ด้วย class
+            tailwind.config = { darkMode: 'class' };
+
+            // โหลดสถานะจาก localStorage
+            if (localStorage.theme === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+            } else {
+                document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+            }
+        }     
 
         window.onload = () => {
+            initDarkMode();
             loadExcelData();
             navigateTo('home');
         };
