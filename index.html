@@ -322,24 +322,53 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-white dark:bg-gray-800 border-t">
-        <div class="max-w-7xl mx-auto px-6 py-8 text-sm">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div>
-                    <p class="font-semibold text-[#0b3d91]">ฝ่ายมาตรฐานดิจิทัลภาครัฐ</p>
-                    <p class="text-gray-600">สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน) (สพร.)</p>
-                    <p class="text-gray-500">อาคารสถาบันเพื่อการยุติธรรมแห่งประเทศไทย (TIJ) ชั้น 4<br>เลขที่ 999 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพฯ 10210</p>
-                    <p class="mt-3"><a href="mailto:contact@dga.or.th" class="hover:text-[#0b3d91]">contact@dga.or.th</a> • (+66) 02 612 6000</p>
+<!-- FOOTER -->
+<footer class="bg-white dark:bg-gray-800 border-t mt-16">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            
+            <!-- Column 1: Logo + ชื่อหน่วยงาน -->
+            <div class="md:col-span-5">
+                <div class="flex items-center gap-x-3 mb-6">
+                    <img id="dga-logo-footer" src="DGALogo.png" alt="DGA" class="h-10">
+                    <div>
+                        <p class="font-semibold text-[#0b3d91] dark:text-white text-lg">สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน)</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Digital Government Development Agency (DGA)</p>
+                    </div>
                 </div>
-                <div class="text-xs text-gray-500 text-center">
-                    All rights reserved © 2025<br>
-                    Digital Government Development Agency (Public Organization) (DGA)<br>
-                    มสพร. 16-2569 • เวอร์ชัน 1.0
+                
+                <div class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                    <p><strong>ฝ่ายมาตรฐานดิจิทัลภาครัฐ</strong></p>
+                    <p>อาคารสถาบันเพื่อการยุติธรรมแห่งประเทศไทย (TIJ) ชั้น 4</p>
+                    <p>เลขที่ 999 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพฯ 10210</p>
+                </div>
+            </div>
+
+            <!-- Column 2: ข้อมูลติดต่อ -->
+            <div class="md:col-span-4">
+                <div class="text-sm text-gray-600 dark:text-gray-400 space-y-3">
+                    <p class="flex items-center gap-x-2">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:contact@dga.or.th" class="hover:text-[#0b3d91]">contact@dga.or.th</a>
+                    </p>
+                    <p class="flex items-center gap-x-2">
+                        <i class="fa-solid fa-phone"></i>
+                        (+66) 02 612 6000
+                    </p>
+                </div>
+            </div>
+
+            <!-- Column 3: Copyright -->
+            <div class="md:col-span-3 text-right md:text-left">
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                    <p>All rights reserved © 2025</p>
+                    <p>Digital Government Development Agency (Public Organization) (DGA)</p>
+                    <p class="mt-2">มสพร. 16-2569 • เวอร์ชัน 1.0</p>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <script>
         let allControls = [];
