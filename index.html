@@ -64,21 +64,25 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 <!-- Navbar Responsive -->
+<!-- Navbar Responsive -->
 <nav class="bg-white dark:bg-gray-800 border-b sticky top-0 z-50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="flex items-center justify-between h-16">
-            
-            <!-- Logo -->
-            <div class="flex items-center gap-x-3">
-                <img id="dga-logo" src="DGALogo.png" alt="DGA" class="h-10">
-                <div>
-                    <h3 class="text-xl font-semibold text-[#0b3d91] dark:text-[#4a9eff]">Digital Service Standard</h3>
-                    <p class="text-xs -mt-1">มสพร.16-2569</p>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-14 md:h-16">
+
+            <!-- Logo + Title -->
+            <div class="flex items-center gap-x-2 md:gap-x-3 min-w-0 flex-1 md:flex-none">
+                <img id="dga-logo" src="DGALogo.png" alt="DGA" class="h-8 md:h-10 flex-shrink-0">
+
+                <div class="min-w-0">
+                    <h2 class="text-lg md:text-xl font-semibold text-[#0b3d91] dark:text-[#4a9eff] truncate"> Digital Service Standard</h2>
+                    <p class="text-xs md:text-sm -mt-0.5 text-gray-500 dark:text-gray-400 truncate">
+                        มสพร.16-2569
+                    </p>
                 </div>
             </div>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+            <div class="hidden md:flex items-center gap-x-6 text-sm font-medium">
                 <a onclick="navigateTo('home')" class="flex items-center gap-x-2 hover:text-[#0b3d91]"><i class="fa-solid fa-home"></i> หน้าแรก</a>
                 <a onclick="navigateTo('controls')" class="flex items-center gap-x-2 hover:text-[#0b3d91]"><i class="fa-solid fa-list-check"></i> มาตรการควบคุม</a>
                 <a onclick="navigateTo('impact')" class="flex items-center gap-x-2 hover:text-[#0b3d91]"><i class="fa-solid fa-chart-bar"></i> ประเมินผลกระทบ</a>
@@ -86,7 +90,7 @@
             </div>
 
             <!-- Right Side -->
-            <div class="flex items-center gap-x-4">
+            <div class="flex items-center gap-x-3">
                 <button onclick="toggleDarkMode()" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
                 </button>
@@ -96,12 +100,12 @@
                     <span id="visitor-count">1,284</span>
                 </div>
 
-                <button onclick="showAdminModal()" class="flex items-center gap-x-2 bg-[#0b3d91] text-white px-5 py-2 rounded-2xl hover:bg-[#0a2e70] text-sm font-medium">
+                <button onclick="showAdminModal()" class="flex items-center gap-x-2 bg-[#0b3d91] text-white px-4 py-2 rounded-2xl hover:bg-[#0a2e70] text-sm font-medium">
                     <i class="fa-solid fa-upload"></i>
-                    <span class="hidden sm:inline">อัปโหลด Excel</span>
+                    <span class="hidden sm:inline">ส่งผลการประเมิน</span>
                 </button>
 
-                <!-- Hamburger Menu (Mobile) -->
+                <!-- Hamburger Menu -->
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-2xl">
                     <i id="hamburger-icon" class="fa-solid fa-bars"></i>
                 </button>
@@ -109,11 +113,11 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t py-4 px-6 space-y-4 text-sm font-medium">
-            <a onclick="navigateTo('home'); toggleMobileMenu()" class="flex items-center gap-x-3 py-2"><i class="fa-solid fa-home w-5"></i> หน้าแรก</a>
-            <a onclick="navigateTo('controls'); toggleMobileMenu()" class="flex items-center gap-x-3 py-2"><i class="fa-solid fa-list-check w-5"></i> มาตรการควบคุม</a>
-            <a onclick="navigateTo('impact'); toggleMobileMenu()" class="flex items-center gap-x-3 py-2"><i class="fa-solid fa-chart-bar w-5"></i> ประเมินผลกระทบ</a>
-            <a onclick="navigateTo('download'); toggleMobileMenu()" class="flex items-center gap-x-3 py-2"><i class="fa-solid fa-download w-5"></i> ดาวน์โหลดมาตรฐาน</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t py-4 px-4 space-y-4 text-sm font-medium">
+            <a onclick="navigateTo('home');toggleMobileMenu()" class="flex items-center gap-x-3 py-2"><i class="fa-solid fa-home w-5"></i> หน้าแรก</a>
+            <a onclick="navigateTo('controls');toggleMobileMenu()" class="flex items-center gap-x-3 py-2"><i class="fa-solid fa-list-check w-5"></i> มาตรการควบคุม</a>
+            <a onclick="navigateTo('impact');toggleMobileMenu()" class="flex items-center gap-x-3 py-2"><i class="fa-solid fa-chart-bar w-5"></i> ประเมินผลกระทบ</a>
+            <a onclick="navigateTo('download');toggleMobileMenu()" class="flex items-center gap-x-3 py-2"><i class="fa-solid fa-download w-5"></i> ดาวน์โหลดมาตรฐาน</a>
         </div>
     </div>
 </nav>
