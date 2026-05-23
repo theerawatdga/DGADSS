@@ -278,31 +278,39 @@
         let currentFilters = {app:'all', service:'all', category:'all'};
 
         async function loadExcelData() {
-            try {
-                const res = await fetch('DSS_DB2.xlsx');
-                const arrayBuffer = await res.arrayBuffer();
-                const workbook = XLSX.read(arrayBuffer, {type:'array'});
-                const sheet = workbook.Sheets['Control'];
-                const json = XLSX.utils.sheet_to_json(sheet, {header:1, defval:""});
+        try {
+        const response = await fetch('DSS_DB2.xlsx');
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+        const worksheet = workbook.Sheets['Control'];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: "" });
 
-                allControls = json.slice(1).map(row => ({
-                    web: row[0]==='x', mobile: row[1]==='x',
-                    informational: row[2]==='x', partial: row[3]==='x',
-                    fully: row[4]==='x', portal: row[5]==='x',
-                    compliance: row[6] || '',
-                    category: row[10] || '',
-                    title: row[11] || '',
-                    controlId: row[12] || '',
-                    reason: row[13] || '',
-                    measure: row[14] || '',
-                    checklist: row[15] || '',
-                    evidence: row[16] || ''
-                })).filter(c => c.controlId);
+        allControls = jsonData.slice(1).map(row => ({
+            web: (row[0] || "").toString().trim().toLowerCase() === 'x',
+            mobile: (row[1] || "").toString().trim().toLowerCase() === 'x',
+            informational: (row[2] || "").toString().trim().toLowerCase() === 'x',
+            partial: (row[3] || "").toString().trim().toLowerCase() === 'x',
+            fully: (row[4] || "").toString().trim().toLowerCase() === 'x',
+            portal: (row[5] || "").toString().trim().toLowerCase() === 'x',
+            compliance: (row[6] || "").toString().trim(),
+            lowImpact: (row[7] || "").toString().trim(),
+            mediumImpact: (row[8] || "").toString().trim(),
+            highImpact: (row[9] || "").toString().trim(),
+            category: row[10] || "",
+            title: row[11] || "",
+            controlId: row[12] || "",
+            reason: row[13] || "",
+            measure: row[14] || "",
+            checklist: row[15] || "",
+            evidence: row[16] || ""
+        })).filter(c => c.controlId);
 
-                populateCategoryFilter();
-                filterControls();
-            } catch(e) { console.error("โหลด Excel ล้มเหลว", e); }
-        }
+        populateCategoryFilter();
+        filterControls();
+    } catch (err) {
+        console.error("โหลด Excel ล้มเหลว", err);
+    }
+}
 
         function populateCategoryFilter() {
             const select = document.getElementById('filter-category');
@@ -350,37 +358,70 @@
             });
         }
 
-        function showControlDetail(id) {
-            const c = allControls.find(x => x.controlId === id);
-            if (!c) return;
+       function showControlDetail(id) {
+    const control = allControls.find(c => c.controlId === id);
+    if (!control) return;
 
-            const html = `
-                <div class="flex justify-between mb-6">
-                    <div>
-                        <span class="font-mono text-sm bg-gray-100 px-3 py-1 rounded-2xl">${c.controlId}</span>
-                        <h2 class="text-2xl font-semibold mt-2">${c.title}</h2>
-                        <p class="text-gray-500">${c.category}</p>
+    let complianceHTML = `<p class="text-xl font-semibold">${control.compliance}</p>`;
+
+    if (control.compliance === "Impact Level") {
+        complianceHTML = `
+            <div>
+                <p class="text-xl font-semibold mb-4">Impact Level</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center bg-gray-50 dark:bg-gray-700 p-4 rounded-2xl">
+                        <span class="font-medium">Low Impact</span>
+                        <span class="font-semibold ${control.lowImpact === 'Mandatory' ? 'text-red-600' : 'text-emerald-600'}">${control.lowImpact || '-'}</span>
                     </div>
-                    <button onclick="hideDetailModal()" class="text-4xl text-gray-400 hover:text-gray-600">×</button>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-2 space-y-8">
-                        <div><h4 class="font-medium text-gray-500">เหตุผล</h4><p>${c.reason || '—'}</p></div>
-                        <div><h4 class="font-medium text-gray-500">มาตรการควบคุม</h4><p>${c.measure || '—'}</p></div>
-                        <div><h4 class="font-medium text-gray-500">รายการตรวจสอบ</h4><p class="whitespace-pre-line">${c.checklist || '—'}</p></div>
+                    <div class="flex justify-between items-center bg-gray-50 dark:bg-gray-700 p-4 rounded-2xl">
+                        <span class="font-medium">Medium Impact</span>
+                        <span class="font-semibold ${control.mediumImpact === 'Mandatory' ? 'text-red-600' : 'text-emerald-600'}">${control.mediumImpact || '-'}</span>
                     </div>
-                    <div>
-                        <h4 class="font-medium text-gray-500">Compliance</h4>
-                        <p class="text-xl font-semibold">${c.compliance}</p>
-                        <h4 class="font-medium text-gray-500 mt-8">หลักฐาน</h4>
-                        <p class="text-sm">${c.evidence || '—'}</p>
+                    <div class="flex justify-between items-center bg-gray-50 dark:bg-gray-700 p-4 rounded-2xl">
+                        <span class="font-medium">High Impact</span>
+                        <span class="font-semibold ${control.highImpact === 'Mandatory' ? 'text-red-600' : 'text-emerald-600'}">${control.highImpact || '-'}</span>
                     </div>
                 </div>
-            `;
-            document.getElementById('modal-content').innerHTML = html;
-            document.getElementById('detail-modal').classList.remove('hidden');
-            document.getElementById('detail-modal').classList.add('flex');
-        }
+            </div>
+        `;
+    }
+
+    const modalHTML = `
+        <div class="flex justify-between items-start mb-6">
+            <div>
+                <span class="font-mono text-sm bg-gray-100 px-3 py-1 rounded-2xl">${control.controlId}</span>
+                <h2 class="text-2xl font-semibold mt-2">${control.title}</h2>
+                <p class="text-gray-500">${control.category}</p>
+            </div>
+            <button onclick="hideDetailModal()" class="text-4xl leading-none text-gray-400 hover:text-gray-600">×</button>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-8">
+                <div>
+                    <h4 class="font-medium text-gray-500 mb-2">เหตุผล</h4>
+                    <p>${control.reason || '—'}</p>
+                </div>
+                <div>
+                    <h4 class="font-medium text-gray-500 mb-2">มาตรการควบคุม</h4>
+                    <p>${control.measure || '—'}</p>
+                </div>
+                <div>
+                    <h4 class="font-medium text-gray-500 mb-2">รายการตรวจสอบ (Checklist)</h4>
+                    <p class="whitespace-pre-line">${control.checklist || '—'}</p>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-medium text-gray-500 mb-3">การบังคับใช้ (Compliance)</h4>
+                ${complianceHTML}
+            </div>
+        </div>
+    `;
+
+    document.getElementById('modal-content').innerHTML = modalHTML;
+    document.getElementById('detail-modal').classList.remove('hidden');
+    document.getElementById('detail-modal').classList.add('flex');
+}
 
         function hideDetailModal() {
             const m = document.getElementById('detail-modal');
