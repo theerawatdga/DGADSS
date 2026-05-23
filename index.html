@@ -121,48 +121,57 @@
     </main>
 
     <!-- CONTROLS PAGE -->
-    <div id="page-controls" class="page hidden">
+<div id="page-controls" class="page hidden">
     <div class="mb-8">
         <h1 class="text-3xl font-semibold mb-2">มาตรการควบคุม (Controls)</h1>
         <p class="text-gray-600 dark:text-gray-400">รายการมาตรการควบคุมทั้งหมดตามมาตรฐานบริการดิจิทัลภาครัฐ (มสพร. 16-2569)</p>
     </div>
 
-    <!-- Filters -->
-    <div class="flex flex-wrap gap-4 mb-6 items-end">
-        <div>
-            <label class="block text-xs font-medium text-gray-500 mb-1">Application Type</label>
-            <select id="filter-app" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                <option value="all">ทั้งหมด</option>
-                <option value="web">Website / Web Application</option>
-                <option value="mobile">Mobile Application</option>
-            </select>
+    <!-- Filters + Result Count -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div class="flex flex-wrap gap-4 items-end">
+            <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1">Application Type</label>
+                <select id="filter-app" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="web">Website / Web Application</option>
+                    <option value="mobile">Mobile Application</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1">Service Type</label>
+                <select id="filter-service" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="informational">Informational Service</option>
+                    <option value="partial">Partial Digital</option>
+                    <option value="fully">Fully Digital</option>
+                    <option value="portal">Portal</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1">หมวดหมู่</label>
+                <select id="filter-category" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
+                    <!-- JS populated -->
+                </select>
+            </div>
         </div>
-        
-        <div>
-            <label class="block text-xs font-medium text-gray-500 mb-1">Service Type</label>
-            <select id="filter-service" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                <option value="all">ทั้งหมด</option>
-                <option value="informational">Informational Service</option>
-                <option value="partial">Partial Digital</option>
-                <option value="fully">Fully Digital</option>
-                <option value="portal">Portal</option>
-            </select>
-        </div>
-        
-        <div>
-            <label class="block text-xs font-medium text-gray-500 mb-1">หมวดหมู่</label>
-            <select id="filter-category" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                <!-- JS will populate -->
-            </select>
+
+        <!-- จำนวนผลลัพธ์ (ด้านบน) -->
+        <div class="text-right">
+            <div class="text-sm text-gray-500">จำนวนมาตรการที่พบ</div>
+            <div id="filter-result" class="text-3xl font-semibold text-[#0b3d91]">0</div>
         </div>
 
         <button onclick="exportTable()" 
-                class="flex items-center gap-x-2 px-5 py-2.5 border border-gray-300 dark:border-gray-600 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium">
+                class="flex items-center gap-x-2 px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium">
             <i class="fa-solid fa-download"></i>
             <span>ดาวน์โหลด / พิมพ์</span>
         </button>
     </div>
-    <!-- Responsive Table -->
+
+    <!-- Table -->
     <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700">
         <div class="overflow-x-auto">
             <table class="w-full text-sm min-w-[1000px]" id="controls-table">
@@ -181,6 +190,7 @@
             </table>
         </div>
     </div>
+</div>
 
     <div class="mt-4 flex justify-between text-xs text-gray-500">
         <div>จำนวนมาตรการทั้งหมด: <span id="result-count" class="font-semibold text-gray-700 dark:text-gray-300">0</span></div>
@@ -505,7 +515,8 @@
         
         return appMatch && serviceMatch && categoryMatch;
     });
-            document.getElementById('result-count').textContent = filtered.length;
+            document.getElementById('filter-result').textContent = filtered.length;
+            document.getElementById('result-count').textContent = filtered.length; // ถ้ายังมีตัวเก่าไว้ด้านล่าง
             
             filtered.forEach(control => {
                 const complianceDisplay = getComplianceDisplay(control);
