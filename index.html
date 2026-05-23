@@ -526,10 +526,38 @@ function resetImpact() {
                 localStorage.theme = 'dark';
                 document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
             }
-        }     
+        }    
+        
+        // ==================== VISITOR COUNTER (CounterAPI) ====================
+        async function countVisitors() {
+            const ENDPOINT = "https://api.counterapi.dev/v2/theerawatdgas-team-4209/dgadss-counter";
+            const API_KEY = "ut_cUMTOlRPTtZUuwWkMBuNahUhP96sI9gM6fkgNSzZ";   // ← เปลี่ยนเป็น API Key ของคุณ
 
+            try {
+                const response = await fetch(ENDPOINT, {
+                    method: 'POST',                    // CounterAPI.dev ใช้ POST สำหรับ increment
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+                
+                // แสดงผลตัวเลข
+                const count = data.value || data.count || 1284;
+                document.getElementById('visitor-count').textContent = 
+                    count.toLocaleString('th-TH');
+            } catch (error) {
+                console.error("CounterAPI Error:", error);
+                // กรณี error ใช้ค่า fallback
+                document.getElementById('visitor-count').textContent = "1,284";
+            }
+        }
+        
         window.onload = () => {
             initDarkMode();
+            countVisitors();
             loadExcelData();
             navigateTo('home');
         };
