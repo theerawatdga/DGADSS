@@ -530,10 +530,11 @@ function resetImpact() {
         
         // ==================== VISITOR COUNTER (CounterAPI) ====================
         async function countVisitors() {
+            const UNIQUE_KEY = "dgadss-visitor";   // ← คุณสามารถเปลี่ยนชื่อนี้ได้ (ห้ามมีช่องว่าง)
+
             try {
-                // URL ที่ถูกต้องตามเอกสารของ countapi.mileshilliard.com
                 const response = await fetch(
-                    'https://countapi.mileshilliard.com/api/v1/hit/theerawatdga.github.io/dgadss-counter'
+                    `https://countapi.mileshilliard.com/api/v1/hit/${UNIQUE_KEY}`
                 );
                 
                 const data = await response.json();
