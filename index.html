@@ -119,77 +119,76 @@
         <!-- ... (ส่วนอื่นๆ ยังคงเหมือนโค้ดเก่า) ... -->
 
     </main>
-        
-        <!-- CONTROLS PAGE -->
-        <div id="page-controls" class="page hidden">
-            <div class="flex justify-between items-end mb-6">
-                <div>
-                    <h1 class="text-3xl font-semibold">มาตรการควบคุม (Controls)</h1>
-                    <p class="text-gray-500 dark:text-gray-400">เลือกประเภทแอปพลิเคชันและประเภทบริการเพื่อกรองมาตรการที่เกี่ยวข้อง</p>
-                </div>
-                
-                <div class="flex gap-x-3">
-                    <!-- Filters -->
-                    <div class="flex flex-col">
-                        <label class="text-xs font-medium text-gray-500 mb-1">Application Type</label>
-                        <select id="filter-app" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                            <option value="all">ทั้งหมด</option>
-                            <option value="web">Website / Web Application</option>
-                            <option value="mobile">Mobile Application</option>
-                        </select>
-                    </div>
-                    
-                    <div class="flex flex-col">
-                        <label class="text-xs font-medium text-gray-500 mb-1">Service Type</label>
-                        <select id="filter-service" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                            <option value="all">ทั้งหมด</option>
-                            <option value="informational">Informational Service</option>
-                            <option value="partial">Partial Digital</option>
-                            <option value="fully">Fully Digital</option>
-                            <option value="portal">Portal</option>
-                        </select>
-                    </div>
-                    
-                    <div class="flex flex-col">
-                        <label class="text-xs font-medium text-gray-500 mb-1">หมวดหมู่</label>
-                        <select id="filter-category" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                            <!-- Populated by JS -->
-                        </select>
-                    </div>
-                    
-                    <button onclick="exportTable()" 
-                            class="flex items-center gap-x-2 px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium">
-                        <i class="fa-solid fa-download"></i>
-                        <span>ดาวน์โหลด / พิมพ์</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Table -->
-            <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700">
-                <table class="w-full text-sm" id="controls-table">
-                    <thead class="bg-gray-50 dark:bg-gray-700">
-                        <tr>
-                            <th class="px-6 py-4 text-left font-medium w-20">Control ID</th>
-                            <th class="px-6 py-4 text-left font-medium">หมวด</th>
-                            <th class="px-6 py-4 text-left font-medium">หัวข้อ</th>
-                            <th class="px-6 py-4 text-left font-medium w-28">Compliance</th>
-                            <th class="px-6 py-4 text-center font-medium w-12">รายละเอียด</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700" id="controls-body">
-                        <!-- Populated by JS -->
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="mt-4 text-xs text-gray-400 flex justify-between">
-                <div>จำนวนมาตรการที่แสดง: <span id="result-count" class="font-medium text-gray-600 dark:text-gray-300">0</span></div>
-                <div onclick="window.print()" class="cursor-pointer flex items-center gap-x-1 hover:text-gray-600">
-                    <i class="fa-solid fa-print"></i> พิมพ์ตารางนี้
-                </div>
-            </div>
+
+    <!-- CONTROLS PAGE -->
+    <div id="page-controls" class="page hidden">
+    <div class="mb-8">
+        <h1 class="text-3xl font-semibold mb-2">มาตรการควบคุม (Controls)</h1>
+        <p class="text-gray-600 dark:text-gray-400">รายการมาตรการควบคุมทั้งหมดตามมาตรฐานบริการดิจิทัลภาครัฐ (มสพร. 16-2569)</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-4 mb-6 items-end">
+        <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1">Application Type</label>
+            <select id="filter-app" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
+                <option value="all">ทั้งหมด</option>
+                <option value="web">Website / Web Application</option>
+                <option value="mobile">Mobile Application</option>
+            </select>
         </div>
+        
+        <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1">Service Type</label>
+            <select id="filter-service" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
+                <option value="all">ทั้งหมด</option>
+                <option value="informational">Informational Service</option>
+                <option value="partial">Partial Digital</option>
+                <option value="fully">Fully Digital</option>
+                <option value="portal">Portal</option>
+            </select>
+        </div>
+        
+        <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1">หมวดหมู่</label>
+            <select id="filter-category" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
+                <!-- JS will populate -->
+            </select>
+        </div>
+
+        <button onclick="exportTable()" 
+                class="flex items-center gap-x-2 px-5 py-2.5 border border-gray-300 dark:border-gray-600 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium">
+            <i class="fa-solid fa-download"></i>
+            <span>ดาวน์โหลด / พิมพ์</span>
+        </button>
+    </div>
+    <!-- Responsive Table -->
+    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700">
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm min-w-[1000px]" id="controls-table">
+                <thead class="bg-gray-50 dark:bg-gray-700 sticky top-0">
+                    <tr>
+                        <th class="px-6 py-4 text-left font-medium w-24">Control ID</th>
+                        <th class="px-6 py-4 text-left font-medium w-52">หมวดหมู่</th>
+                        <th class="px-6 py-4 text-left font-medium">หัวข้อ</th>
+                        <th class="px-6 py-4 text-center font-medium w-32">Compliance</th>
+                        <th class="px-6 py-4 text-center font-medium w-16">รายละเอียด</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-700" id="controls-body">
+                    <!-- JS populated -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 flex justify-between text-xs text-gray-500">
+        <div>จำนวนมาตรการทั้งหมด: <span id="result-count" class="font-semibold text-gray-700 dark:text-gray-300">0</span></div>
+        <div onclick="window.print()" class="cursor-pointer hover:text-gray-700 flex items-center gap-x-1">
+            <i class="fa-solid fa-print"></i> พิมพ์ตาราง
+        </div>
+    </div>
+</div>
         
         <!-- IMPACT ASSESSMENT PAGE -->
         <div id="page-impact" class="page hidden">
@@ -483,33 +482,29 @@
         }
         
         // Filter controls
-        function filterControls() {
-            currentFilters.app = document.getElementById('filter-app').value;
-            currentFilters.service = document.getElementById('filter-service').value;
-            currentFilters.category = document.getElementById('filter-category').value;
-            
-            const tbody = document.getElementById('controls-body');
-            tbody.innerHTML = '';
-            
-            const filtered = allControls.filter(control => {
-                // App filter
-                let appMatch = true;
-                if (currentFilters.app === 'web') appMatch = control.web;
-                else if (currentFilters.app === 'mobile') appMatch = control.mobile;
-                
-                // Service filter
-                let serviceMatch = true;
-                if (currentFilters.service === 'informational') serviceMatch = control.informational;
-                else if (currentFilters.service === 'partial') serviceMatch = control.partial;
-                else if (currentFilters.service === 'fully') serviceMatch = control.fully;
-                else if (currentFilters.service === 'portal') serviceMatch = control.portal;
-                
-                // Category filter
-                const categoryMatch = currentFilters.category === 'all' || control.category === currentFilters.category;
-                
-                return appMatch && serviceMatch && categoryMatch;
-            });
-            
+       function filterControls() {
+    currentFilters.app = document.getElementById('filter-app').value;
+    currentFilters.service = document.getElementById('filter-service').value;
+    currentFilters.category = document.getElementById('filter-category').value;
+    
+    const tbody = document.getElementById('controls-body');
+    tbody.innerHTML = '';
+    
+    const filtered = allControls.filter(control => {
+        let appMatch = currentFilters.app === 'all' || 
+                      (currentFilters.app === 'web' && control.web) || 
+                      (currentFilters.app === 'mobile' && control.mobile);
+        
+        let serviceMatch = currentFilters.service === 'all' || 
+                          (currentFilters.service === 'informational' && control.informational) ||
+                          (currentFilters.service === 'partial' && control.partial) ||
+                          (currentFilters.service === 'fully' && control.fully) ||
+                          (currentFilters.service === 'portal' && control.portal);
+        
+        let categoryMatch = currentFilters.category === 'all' || control.category === currentFilters.category;
+        
+        return appMatch && serviceMatch && categoryMatch;
+    });
             document.getElementById('result-count').textContent = filtered.length;
             
             filtered.forEach(control => {
