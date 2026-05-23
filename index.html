@@ -115,33 +115,45 @@
         <!-- ==================== CONTROLS PAGE ==================== -->
         <div id="page-controls" class="page">
             <h1 class="text-3xl font-semibold mb-2">มาตรการควบคุม (Controls)</h1>
-            <p class="text-gray-600 dark:text-gray-400 mb-6">เลือกประเภทแอปพลิเคชันและประเภทบริการเพื่อกรองมาตรการที่เกี่ยวข้อง</p>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">รายการมาตรการควบคุมทั้งหมดตามมาตรฐานบริการดิจิทัลภาครัฐ (มสพร. 16-2569)</p>
 
-            <div class="flex flex-wrap gap-4 mb-6">
-                <div>
-                    <select id="filter-app" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2 text-sm">
-                        <option value="all">Application Type - ทั้งหมด</option>
-                        <option value="web">Website / Web Application</option>
-                        <option value="mobile">Mobile Application</option>
-                    </select>
+            <!-- Filters + จำนวนมาตรการ (ย้ายขึ้นด้านบน + ขนาดใหญ่) -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div class="flex flex-wrap gap-4">
+                    <div>
+                        <select id="filter-app" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
+                            <option value="all">Application Type - ทั้งหมด</option>
+                            <option value="web">Website / Web Application</option>
+                            <option value="mobile">Mobile Application</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="filter-service" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
+                            <option value="all">Service Type - ทั้งหมด</option>
+                            <option value="informational">Informational Service</option>
+                            <option value="partial">Partial Digital</option>
+                            <option value="fully">Fully Digital</option>
+                            <option value="portal">Portal</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="filter-category" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91] w-72"></select>
+                    </div>
                 </div>
-                <div>
-                    <select id="filter-service" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2 text-sm">
-                        <option value="all">Service Type - ทั้งหมด</option>
-                        <option value="informational">Informational Service</option>
-                        <option value="partial">Partial Digital</option>
-                        <option value="fully">Fully Digital</option>
-                        <option value="portal">Portal</option>
-                    </select>
+
+                <!-- จำนวนมาตรการ (ย้ายขึ้นมา + ขนาดใหญ่) -->
+                <div class="text-right">
+                    <div class="text-sm text-gray-500 mb-1">จำนวนมาตรการที่พบ</div>
+                    <div id="filter-result" class="text-4xl font-bold text-[#0b3d91]">0</div>
                 </div>
-                <div>
-                    <select id="filter-category" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2 text-sm w-72"></select>
-                </div>
-                <button onclick="exportTable()" class="ml-auto flex items-center gap-x-2 px-6 py-2 border rounded-2xl hover:bg-gray-50">
-                    <i class="fa-solid fa-download"></i> ดาวน์โหลด / พิมพ์
+
+                <button onclick="exportTable()" class="flex items-center gap-x-2 px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-2xl hover:bg-gray-50 text-sm font-medium">
+                    <i class="fa-solid fa-download"></i>
+                    <span>ดาวน์โหลด / พิมพ์</span>
                 </button>
             </div>
 
+            <!-- ตาราง -->
             <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm" id="controls-table">
@@ -158,7 +170,6 @@
                     </table>
                 </div>
             </div>
-            <div class="mt-4 text-sm text-gray-500">จำนวนมาตรการที่พบ: <strong id="filter-result" class="text-[#0b3d91]">0</strong></div>
         </div>
 
         <!-- ==================== IMPACT PAGE ==================== -->
