@@ -9,37 +9,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap');
-    body { 
-        font-family: 'Noto Sans Thai', system-ui, sans-serif; 
-    }
-
-    /* ปรับ Dropdown ให้สวยทั้ง Light และ Dark Mode */
-    select {
-        background-color: #ffffff;
-        color: #111827;
-        border: 1px solid #d1d5db;
-    }
-
-    .dark select {
-        background-color: #374151;
-        color: #f3f4f6;
-        border-color: #4b5563;
-    }
-
-    /* ปรับ option ใน dropdown */
-    .dark select option {
-        background-color: #374151;
-        color: #f3f4f6;
-    }
-
-    select:focus {
-        outline: none;
-        border-color: #0b3d91;
-        box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.2);
-    }
-</style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap');
+        body { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
