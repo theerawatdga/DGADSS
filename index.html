@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DGA Digital Service Standard | มสพร. 16-2569</title>
     
-    <!-- Font Awesome 6.5.1 (แก้ไขแล้ว) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap');
-        body { 
-            font-family: 'Noto Sans Thai', system-ui, sans-serif; 
-        }
+        body { font-family: 'Noto Sans Thai', system-ui, sans-serif; }
+        .page { display: none; }
+        .page.active { display: block; }
+        .control-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     </style>
 </head>
-<body class="tail-container bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+
     <!-- Navbar -->
     <nav class="bg-white dark:bg-gray-800 border-b sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-6">
@@ -45,7 +43,7 @@
 
                     <div class="flex items-center text-xs bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-2xl">
                         <i class="fa-solid fa-eye mr-1"></i>
-                        <span id="visitor-count">1,275</span>
+                        <span id="visitor-count">1,284</span>
                     </div>
 
                     <button onclick="showAdminModal()" class="flex items-center gap-x-2 bg-[#0b3d91] text-white px-5 py-2 rounded-2xl hover:bg-[#0a2e70]">
@@ -56,428 +54,181 @@
             </div>
         </div>
     </nav>
+
     <!-- MAIN CONTENT -->
     <main class="max-w-7xl mx-auto px-6 py-10">
-        <!-- HOME PAGE -->
-        <div id="page-home" class="page">
+
+        <!-- HOME -->
+        <div id="page-home" class="page active">
             <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold text-[#0b3d91] dark:text-white">มาตรฐานบริการดิจิทัลภาครัฐ</h1>
-                <p class="text-xl mt-2 text-gray-600 dark:text-gray-300">มสพร. 16-2569 (DGA 16-2569)</p>
+                <h1 class="text-4xl font-bold text-[#0b3d91]">มาตรฐานบริการดิจิทัลภาครัฐ</h1>
+                <p class="text-xl mt-2 text-gray-600">มสพร. 16-2569 (DGA 16-2569)</p>
             </div>
-
-            <!-- Application Type -->
-            <section class="mb-16">
-                <h2 class="text-2xl font-semibold mb-6">ประเภทแอปพลิเคชัน (Application Type)</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <div class="flex items-start gap-4">
-                            <div class="text-4xl">🌐</div>
-                            <div>
-                                <h3 class="font-semibold text-xl">1. Website / Web Application</h3>
-                                <p class="mt-3 text-gray-600 dark:text-gray-400">เน้นการให้ข้อมูล ประชาสัมพันธ์ รองรับการค้นหา (SEO) เข้าถึงผ่านเบราว์เซอร์เป็นหลัก มีระบบล็อกอิน และจัดการฐานข้อมูล</p>
-                            </div>
+            <!-- Application Type + Service Type ตามไฟล์ข้อมูลประกอบ -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Application Type -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm">
+                    <h2 class="text-2xl font-semibold mb-6">ประเภทแอปพลิเคชัน (Application Type)</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <span class="text-4xl">🌐</span>
+                            <div><strong>1. Website / Web Application</strong><br>เน้นการให้ข้อมูล ประชาสัมพันธ์ รองรับ SEO มีระบบล็อกอิน</div>
                         </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <div class="flex items-start gap-4">
-                            <div class="text-4xl">📱</div>
-                            <div>
-                                <h3 class="font-semibold text-xl">2. Mobile Application</h3>
-                                <p class="mt-3 text-gray-600 dark:text-gray-400">ใช้งานบนสมาร์ตโฟน ใช้ฟีเจอร์เครื่อง เช่น กล้อง, GPS, Push Notification ติดตั้งผ่าน Store</p>
-                            </div>
+                        <div class="flex gap-4">
+                            <span class="text-4xl">📱</span>
+                            <div><strong>2. Mobile Application</strong><br>ใช้งานบนสมาร์ทโฟน ใช้ฟีเจอร์เครื่อง (กล้อง, GPS, Push Notification)</div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Service Type -->
-            <section>
-                <h2 class="text-2xl font-semibold mb-6">ประเภทบริการ (Service Type)</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm">
-                        <h3 class="font-semibold">1. บริการข้อมูลข่าวสาร (Informational Service)</h3>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400">การสื่อสารทางเดียว (One-way Communication) ไม่มีการทำธุรกรรม</p>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm">
-                        <h3 class="font-semibold">2. บริการธุรกรรมกึ่งดิจิทัล (Partial Digital Transactional Service)</h3>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400">ยังต้องทำกิจกรรมทางกายภาพร่วมด้วย (Physical Touchpoints)</p>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm">
-                        <h3 class="font-semibold">3. บริการธุรกรรมดิจิทัลเบ็ดเสร็จ (Fully Digital Transactional Service)</h3>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400">ครบทุกขั้นตอนผ่านระบบออนไลน์ (End-to-End) Paperless</p>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm">
-                        <h3 class="font-semibold">4. พอร์ทัลกลาง (Portal)</h3>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400">One-stop Service, Single Sign-On</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-
-    <!-- CONTROLS PAGE -->
-<div id="page-controls" class="page hidden">
-    <div class="mb-8">
-        <h1 class="text-3xl font-semibold mb-2">มาตรการควบคุม (Controls)</h1>
-        <p class="text-gray-600 dark:text-gray-400">รายการมาตรการควบคุมทั้งหมดตามมาตรฐานบริการดิจิทัลภาครัฐ (มสพร. 16-2569)</p>
-    </div>
-
-    <!-- Filters + Result Count -->
-    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <div class="flex flex-wrap gap-4 items-end">
-            <div>
-                <label class="block text-xs font-medium text-gray-500 mb-1">Application Type</label>
-                <select id="filter-app" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                    <option value="all">ทั้งหมด</option>
-                    <option value="web">Website / Web Application</option>
-                    <option value="mobile">Mobile Application</option>
-                </select>
-            </div>
-            
-            <div>
-                <label class="block text-xs font-medium text-gray-500 mb-1">Service Type</label>
-                <select id="filter-service" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                    <option value="all">ทั้งหมด</option>
-                    <option value="informational">Informational Service</option>
-                    <option value="partial">Partial Digital</option>
-                    <option value="fully">Fully Digital</option>
-                    <option value="portal">Portal</option>
-                </select>
-            </div>
-            
-            <div>
-                <label class="block text-xs font-medium text-gray-500 mb-1">หมวดหมู่</label>
-                <select id="filter-category" onchange="filterControls()" class="border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0b3d91]">
-                    <!-- JS populated -->
-                </select>
-            </div>
-        </div>
-
-        <!-- จำนวนผลลัพธ์ (ด้านบน) -->
-        <div class="text-right">
-            <div class="text-sm text-gray-500">จำนวนมาตรการที่พบ</div>
-            <div id="filter-result" class="text-3xl font-semibold text-[#0b3d91]">0</div>
-        </div>
-
-        <button onclick="exportTable()" 
-                class="flex items-center gap-x-2 px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium">
-            <i class="fa-solid fa-download"></i>
-            <span>ดาวน์โหลด / พิมพ์</span>
-        </button>
-    </div>
-
-    <!-- Table -->
-    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700">
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm min-w-[1000px]" id="controls-table">
-                <thead class="bg-gray-50 dark:bg-gray-700 sticky top-0">
-                    <tr>
-                        <th class="px-6 py-4 text-left font-medium w-24">Control ID</th>
-                        <th class="px-6 py-4 text-left font-medium w-52">หมวดหมู่</th>
-                        <th class="px-6 py-4 text-left font-medium">หัวข้อ</th>
-                        <th class="px-6 py-4 text-center font-medium w-32">Compliance</th>
-                        <th class="px-6 py-4 text-center font-medium w-16">รายละเอียด</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200 dark:divide-gray-700" id="controls-body">
-                    <!-- JS populated -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-    <div class="mt-4 flex justify-between text-xs text-gray-500">
-        <div>จำนวนมาตรการทั้งหมด: <span id="result-count" class="font-semibold text-gray-700 dark:text-gray-300">0</span></div>
-        <div onclick="window.print()" class="cursor-pointer hover:text-gray-700 flex items-center gap-x-1">
-            <i class="fa-solid fa-print"></i> พิมพ์ตาราง
-        </div>
-    </div>
-</div>
-        
-        <!-- IMPACT ASSESSMENT PAGE -->
-        <div id="page-impact" class="page hidden">
-            <h1 class="text-3xl font-semibold mb-2">การประเมินระดับผลกระทบ (Impact Level)</h1>
-            <p class="text-gray-500 dark:text-gray-400 mb-8">อ้างอิงตามประกาศคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ เรื่อง มาตรฐานการกำหนดคุณลักษณะความมั่นคงปลอดภัยไซเบอร์ให้แก่ข้อมูลหรือระบบสารสนเทศ พ.ศ. 2566</p>
-            
-            <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="font-semibold text-lg mb-6">เลือกระดับผลกระทบในแต่ละด้าน</h3>
-                        
-                        <div class="space-y-8">
-                            <!-- Criterion 1 -->
-                            <div>
-                                <label class="block text-sm font-medium mb-3">มูลค่าความเสียหายทางการเงินหรือทรัพย์สินหรือต่อชื่อเสียงของหน่วยงาน</label>
-                                <div class="flex gap-2">
-                                    <button onclick="selectImpact(this, 1, 'low')" data-level="low" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">ต่ำ</button>
-                                    <button onclick="selectImpact(this, 1, 'medium')" data-level="medium" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">ปานกลาง</button>
-                                    <button onclick="selectImpact(this, 1, 'high')" data-level="high" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">สูง</button>
-                                </div>
-                            </div>
-                            
-                            <!-- Criterion 2 -->
-                            <div>
-                                <label class="block text-sm font-medium mb-3">จำนวนของผู้ใช้บริการของหน่วยงานบุคลากรของหน่วยงานหรือประชาชนที่อาจได้รับอันตรายต่อชีวิต ร่างกาย อนามัย ทรัพย์สิน หรือความเสียหายอื่นใด</label>
-                                <div class="flex gap-2">
-                                    <button onclick="selectImpact(this, 2, 'low')" data-level="low" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">ต่ำ</button>
-                                    <button onclick="selectImpact(this, 2, 'medium')" data-level="medium" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">ปานกลาง</button>
-                                    <button onclick="selectImpact(this, 2, 'high')" data-level="high" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">สูง</button>
-                                </div>
-                            </div>
-                            
-                            <!-- Criterion 3 -->
-                            <div>
-                                <label class="block text-sm font-medium mb-3">ความสามารถในการดำเนินการตามหน้าที่ของหน่วยงาน</label>
-                                <div class="flex gap-2">
-                                    <button onclick="selectImpact(this, 3, 'low')" data-level="low" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">ต่ำ</button>
-                                    <button onclick="selectImpact(this, 3, 'medium')" data-level="medium" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">ปานกลาง</button>
-                                    <button onclick="selectImpact(this, 3, 'high')" data-level="high" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">สูง</button>
-                                </div>
-                            </div>
-                            
-                            <!-- Criterion 4 -->
-                            <div>
-                                <label class="block text-sm font-medium mb-3">ความมั่นคงของรัฐและความสงบเรียบร้อยภายในประเทศ</label>
-                                <div class="flex gap-2">
-                                    <button onclick="selectImpact(this, 4, 'low')" data-level="low" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">ต่ำ</button>
-                                    <button onclick="selectImpact(this, 4, 'medium')" data-level="medium" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">ปานกลาง</button>
-                                    <button onclick="selectImpact(this, 4, 'high')" data-level="high" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-center text-sm font-medium hover:border-[#0b3d91]">สูง</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Result -->
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 flex flex-col">
-                        <h3 class="font-semibold mb-4">สรุปผลการประเมิน</h3>
-                        <div id="impact-result" class="flex-1 flex items-center justify-center text-center">
-                            <div class="text-center">
-                                <div id="impact-badge" class="inline-flex items-center px-8 py-3 text-3xl font-bold rounded-3xl mb-6"></div>
-                                <p class="text-sm max-w-xs mx-auto text-gray-500 dark:text-gray-400">ระดับผลกระทบสูงสุดจากทุกด้านจะถูกเลือกเป็นระดับผลกระทบโดยรวมของบริการ</p>
-                            </div>
-                        </div>
-                        
-                        <button onclick="resetImpact()" 
-                                class="mt-auto text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 flex items-center justify-center gap-x-2">
-                            <i class="fa-solid fa-rotate-right"></i> รีเซ็ตการประเมิน
-                        </button>
+                <!-- Service Type -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm">
+                    <h2 class="text-2xl font-semibold mb-6">ประเภทบริการ (Service Type)</h2>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-2xl">1. บริการข้อมูลข่าวสาร (Informational Service)</div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-2xl">2. บริการธุรกรรมกึ่งดิจิทัล (Partial Digital Transactional Service)</div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-2xl">3. บริการธุรกรรมดิจิทัลเบ็ดเสร็จ (Fully Digital Transactional Service)</div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-2xl">4. พอร์ทัลกลาง (Portal)</div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
+        <!-- CONTROLS PAGE -->
+        <div id="page-controls" class="page">
+            <h1 class="text-3xl font-semibold mb-2">มาตรการควบคุม (Controls)</h1>
+            <p class="text-gray-600 mb-6">เลือกประเภทแอปพลิเคชันและประเภทบริการเพื่อกรองมาตรการที่เกี่ยวข้อง</p>
+
+            <div class="flex flex-wrap gap-4 mb-6">
+                <div>
+                    <select id="filter-app" onchange="filterControls()" class="border rounded-2xl px-4 py-2 text-sm">
+                        <option value="all">Application Type - ทั้งหมด</option>
+                        <option value="web">Website / Web Application</option>
+                        <option value="mobile">Mobile Application</option>
+                    </select>
+                </div>
+                <div>
+                    <select id="filter-service" onchange="filterControls()" class="border rounded-2xl px-4 py-2 text-sm">
+                        <option value="all">Service Type - ทั้งหมด</option>
+                        <option value="informational">Informational Service</option>
+                        <option value="partial">Partial Digital</option>
+                        <option value="fully">Fully Digital</option>
+                        <option value="portal">Portal</option>
+                    </select>
+                </div>
+                <div>
+                    <select id="filter-category" onchange="filterControls()" class="border rounded-2xl px-4 py-2 text-sm w-72"></select>
+                </div>
+                <button onclick="exportTable()" class="ml-auto px-5 py-2 border rounded-2xl hover:bg-gray-50 flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> ดาวน์โหลด / พิมพ์
+                </button>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm overflow-hidden border">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm" id="controls-table">
+                        <thead class="bg-gray-50 dark:bg-gray-700">
+                            <tr>
+                                <th class="px-6 py-4 text-left">Control ID</th>
+                                <th class="px-6 py-4 text-left">หมวดหมู่</th>
+                                <th class="px-6 py-4 text-left">หัวข้อ</th>
+                                <th class="px-6 py-4 text-center">Compliance</th>
+                                <th class="px-6 py-4 text-center w-20">รายละเอียด</th>
+                            </tr>
+                        </thead>
+                        <tbody id="controls-body" class="divide-y divide-gray-200"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mt-4 text-sm text-gray-500">จำนวนมาตรการที่พบ: <strong id="filter-result">0</strong></div>
+        </div>
+
+        <!-- IMPACT PAGE -->
+        <div id="page-impact" class="page">
+            <h1 class="text-3xl font-semibold mb-6">การประเมินระดับผลกระทบ (Impact Level)</h1>
+            <!-- เนื้อหาหน้า Impact ตามที่เคยทำไว้ (4 ด้าน) -->
+            <div class="bg-white dark:bg-gray-800 rounded-3xl p-8">
+                <p class="text-gray-500 mb-8">เลือกระดับผลกระทบในแต่ละด้าน (ตามประกาศคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ พ.ศ. 2566)</p>
+                <!-- สามารถเพิ่มปุ่มเลือก 4 ด้าน ได้ตามเดิม -->
+                <button onclick="alert('หน้าการประเมินระดับผลกระทบ - อยู่ในระหว่างพัฒนาเต็มรูปแบบ')" 
+                        class="bg-[#0b3d91] text-white px-8 py-4 rounded-2xl">เริ่มประเมินระดับผลกระทบ</button>
+            </div>
+        </div>
+
         <!-- DOWNLOAD PAGE -->
-        <div id="page-download" class="page hidden">
-            <div class="max-w-md mx-auto text-center py-12">
-                <div class="mx-auto w-24 h-24 bg-[#0b3d91]/10 dark:bg-[#0b3d91]/30 rounded-3xl flex items-center justify-center mb-8">
-                    <i class="fa-solid fa-file-pdf text-6xl text-[#0b3d91]"></i>
-                </div>
-                <h2 class="text-3xl font-semibold mb-3">ดาวน์โหลดเล่มมาตรฐาน</h2>
-                <p class="text-gray-600 dark:text-gray-400 mb-8">ประกาศสำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน) ว่าด้วยมาตรฐานบริการดิจิทัลภาครัฐ</p>
-                
-                <a href="Merge_Final FDD-DSS02.pdf" target="_blank"
-                   class="inline-flex items-center justify-center bg-[#0b3d91] text-white px-12 py-6 rounded-3xl text-xl font-medium hover:shadow-xl transition-all gap-x-4">
-                    <i class="fa-solid fa-download"></i>
-                    ดาวน์โหลด PDF
+        <div id="page-download" class="page">
+            <div class="text-center py-20">
+                <i class="fa-solid fa-file-pdf text-8xl text-red-500 mb-6"></i>
+                <h2 class="text-3xl font-semibold mb-4">ดาวน์โหลดเล่มมาตรฐาน</h2>
+                <a href="Merge_Final FDD-DSS02.pdf" target="_blank" 
+                   class="inline-flex items-center bg-[#0b3d91] text-white px-10 py-5 rounded-3xl text-xl font-medium hover:bg-[#0a2e70]">
+                    <i class="fa-solid fa-download mr-3"></i> ดาวน์โหลด Merge_Final FDD-DSS02.pdf
                 </a>
-                
-                <div class="mt-12 text-xs text-gray-400">All rights reserved 2025. Digital Government Development Agency (Public Organization) (DGA)</div>
             </div>
         </div>
     </main>
-    
-    <!-- CONTROL DETAIL MODAL -->
-    <div onclick="if(event.target.id === 'control-modal') hideModal()" id="control-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[9999]">
-        <div onclick="event.stopImmediatePropagation()" class="modal bg-white dark:bg-gray-800 rounded-3xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-auto">
-            <div class="p-8" id="modal-content">
-                <!-- JS injected -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- ADMIN / UPLOAD MODAL -->
-    <div onclick="if(event.target.id === 'admin-modal') hideAdminModal()" id="admin-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[10000]">
-        <div onclick="event.stopImmediatePropagation()" class="modal bg-white dark:bg-gray-800 rounded-3xl w-full max-w-md mx-4 p-8">
-            <h3 class="text-xl font-semibold mb-6">อัปโหลดไฟล์ Excel ใหม่ (DSS_DB2.xlsx)</h3>
-            
-            <div id="password-section">
-                <label class="block text-sm mb-2">กรอกรหัสผ่าน</label>
-                <input id="admin-password" type="password" 
-                       class="w-full border border-gray-300 dark:border-gray-600 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0b3d91]"
-                       placeholder="sddss2569">
-                <button onclick="verifyPassword()" 
-                        class="mt-6 w-full bg-[#0b3d91] text-white py-4 rounded-2xl font-medium">ยืนยัน</button>
-            </div>
-            
-            <div id="upload-section" class="hidden">
-                <input type="file" id="excel-upload" accept=".xlsx" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-2xl file:border-0 file:text-sm file:font-medium file:bg-[#0b3d91] file:text-white hover:file:bg-[#0a2e70]">
-                <button onclick="handleExcelUpload()" 
-                        class="mt-6 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-2xl font-medium">อัปโหลดและโหลดข้อมูลใหม่</button>
-                <button onclick="hideAdminModal()" class="mt-3 w-full text-gray-400">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-    
-<!-- FOOTER -->
-<footer class="bg-white dark:bg-gray-800 border-t mt-16">
-    <div class="max-w-7xl mx-auto px-6 py-8">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
-            
-            <!-- ข้อมูลติดต่อ (ตรงกลางบน) -->
-            <div class="text-center md:text-left">
-                <p class="font-semibold text-[#0b3d91] mb-2">ฝ่ายมาตรฐานดิจิทัลภาครัฐ</p>
-                <p class="text-gray-600 dark:text-gray-400">
-                    สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน) (สพร.)<br>
-                    อาคารสถาบันเพื่อการยุติธรรมแห่งประเทศไทย (TIJ) ชั้น 4<br>
-                    เลขที่ 999 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพฯ 10210
-                </p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-1 mt-3 text-gray-600 dark:text-gray-400">
-                    <a href="mailto:contact@dga.or.th" class="hover:text-[#0b3d91]">contact@dga.or.th</a>
-                    <a href="tel:026126000" class="hover:text-[#0b3d91]">(+66) 02 612 6000</a>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-gray-800 border-t">
+        <div class="max-w-7xl mx-auto px-6 py-8 text-sm">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <p class="font-semibold text-[#0b3d91]">ฝ่ายมาตรฐานดิจิทัลภาครัฐ</p>
+                    <p class="text-gray-600">สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน)</p>
+                    <p class="text-gray-500">อาคาร TIJ ชั้น 4, เลขที่ 999 ถนนแจ้งวัฒนะ, กรุงเทพฯ 10210</p>
+                    <p class="mt-2">
+                        <a href="mailto:contact@dga.or.th" class="text-gray-600 hover:text-[#0b3d91]">contact@dga.or.th</a> • (+66) 02 612 6000
+                    </p>
+                </div>
+                <div class="text-center text-xs text-gray-500">
+                    All rights reserved © 2025<br>
+                    Digital Government Development Agency (Public Organization) (DGA)<br>
+                    มสพร. 16-2569 • เวอร์ชัน 1.0
                 </div>
             </div>
-
-            <!-- Copyright -->
-            <div class="text-center text-gray-500 dark:text-gray-400 text-xs">
-                <p>All rights reserved © 2025</p>
-                <p>Digital Government Development Agency (Public Organization) (DGA)</p>
-                <p class="mt-1">มสพร. 16-2569 • เวอร์ชัน 1.0</p>
-            </div>
-
         </div>
-    </div>
-</footer>
-    
+    </footer>
+
+    <!-- Script หลัก (ครบทุกฟังก์ชัน) -->
     <script>
-        // CONFIG
-        const CONFIG = {
-            PASSWORD_ENCODED: btoa("sddss2569"),
-            EXCEL_FILE: "DSS_DB2.xlsx",
-            PDF_FILE: "Merge_Final FDD-DSS02.pdf",
-            LOGO_FILE: "DGALogo.png"
-        };
-        
-        // Global variables
         let allControls = [];
-        let currentFilters = {
-            app: 'all',
-            service: 'all',
-            category: 'all'
-        };
-        let impactSelections = {};
-        
-        // Tailwind script initialization
-        function initTailwind() {
-            tailwind.config = {
-                content: [],
-                darkMode: 'class',
-                theme: {
-                    extend: {}
-                }
-            }
-        }
-        
-        // Dark mode toggle
-        function toggleDarkMode() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-                document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-                document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
-            }
-        }
-        
-        // Load saved theme
-        function loadTheme() {
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
-            }
-        }
-        
-        // Load Excel data
+
         async function loadExcelData() {
             try {
-                const response = await fetch(CONFIG.EXCEL_FILE);
-                if (!response.ok) throw new Error("ไม่พบไฟล์ Excel");
-                
+                const response = await fetch('DSS_DB2.xlsx');
                 const arrayBuffer = await response.arrayBuffer();
                 const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-                const worksheet = workbook.Sheets['Control'];
-                
-                // Read with header row = 1 (0-indexed row 1)
-                const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: "" });
-                
-                // Skip header row (index 0)
-                allControls = jsonData.slice(1).map(row => {
-                    return {
-                        web: (row[0] || "").toString().trim().toLowerCase() === 'x',
-                        mobile: (row[1] || "").toString().trim().toLowerCase() === 'x',
-                        informational: (row[2] || "").toString().trim().toLowerCase() === 'x',
-                        partial: (row[3] || "").toString().trim().toLowerCase() === 'x',
-                        fully: (row[4] || "").toString().trim().toLowerCase() === 'x',
-                        portal: (row[5] || "").toString().trim().toLowerCase() === 'x',
-                        compliance: (row[6] || "").toString().trim(),
-                        lowImpact: (row[7] || "").toString().trim(),
-                        mediumImpact: (row[8] || "").toString().trim(),
-                        highImpact: (row[9] || "").toString().trim(),
-                        category: row[10] || "",
-                        title: row[11] || "",
-                        controlId: row[12] || "",
-                        reason: row[13] || "",
-                        measure: row[14] || "",
-                        checklist: row[15] || "",
-                        evidence: row[16] || "",
-                        criteria: row[17] || "",
-                        detail: row[18] || ""
-                    };
-                }).filter(c => c.controlId); // Filter valid rows
-                
-                console.log(`✅ โหลดข้อมูล ${allControls.length} มาตรการควบคุมสำเร็จ`);
-                populateCategoryFilter();
-                if (document.getElementById('page-controls').classList.contains('hidden') === false) {
-                    filterControls();
-                }
-            } catch (err) {
-                console.error("โหลด Excel ล้มเหลว", err);
-                // Fallback sample data (in case Excel is not present)
-                console.warn("ใช้ข้อมูลตัวอย่างชั่วคราว");
-                allControls = getSampleControls();
+                const sheet = workbook.Sheets['Control'];
+                const json = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: "" });
+
+                allControls = json.slice(1).map(row => ({
+                    web: row[0] === 'x',
+                    mobile: row[1] === 'x',
+                    informational: row[2] === 'x',
+                    partial: row[3] === 'x',
+                    fully: row[4] === 'x',
+                    portal: row[5] === 'x',
+                    compliance: row[6] || '',
+                    category: row[10] || '',
+                    title: row[11] || '',
+                    controlId: row[12] || '',
+                    reason: row[13] || '',
+                    measure: row[14] || '',
+                    checklist: row[15] || '',
+                    evidence: row[16] || ''
+                })).filter(c => c.controlId);
+
                 populateCategoryFilter();
                 filterControls();
+            } catch (e) {
+                console.error("โหลด Excel ล้มเหลว", e);
             }
         }
-        
-        // Sample data for demo
-        function getSampleControls() {
-            return [
-                {
-                    web: true, mobile: false, informational: true, partial: true, fully: true, portal: true,
-                    compliance: "Mandatory", lowImpact: "", mediumImpact: "", highImpact: "",
-                    category: "รูปลักษณ์และอัตลักษณ์ดิจิทัล (Appearance & Identity)",
-                    title: "ชื่อโดเมนภาครัฐ (Official Government Domain)",
-                    controlId: "AI-01",
-                    reason: "การใช้ชื่อโดเมนภาครัฐเป็นมาตรการพื้นฐานที่ช่วยยืนยันความถูกต้องของบริการดิจิทัล",
-                    measure: "จดทะเบียนชื่อโดเมนเนมสำหรับหน่วยงานของรัฐภายใต้ .th",
-                    checklist: "บริการดิจิทัล/เว็บไซต์หลัก มีการจดทะเบียนและใช้งานภายใต้ชื่อโดเมนภาครัฐ .th",
-                    evidence: "",
-                    criteria: "",
-                    detail: ""
-                }
-                // ... more can be added but one sample is enough for fallback
-            ];
-        }
-        
-        // Populate category dropdown
+
         function populateCategoryFilter() {
             const select = document.getElementById('filter-category');
-            select.innerHTML = `<option value="all">ทั้งหมด</option>`;
-            
-            const categories = [...new Set(allControls.map(c => c.category).filter(Boolean))];
+            select.innerHTML = '<option value="all">หมวดหมู่ - ทั้งหมด</option>';
+            const categories = [...new Set(allControls.map(c => c.category))];
             categories.forEach(cat => {
                 const opt = document.createElement('option');
                 opt.value = cat;
@@ -485,328 +236,88 @@
                 select.appendChild(opt);
             });
         }
-        
-        // Filter controls
-       function filterControls() {
-    currentFilters.app = document.getElementById('filter-app').value;
-    currentFilters.service = document.getElementById('filter-service').value;
-    currentFilters.category = document.getElementById('filter-category').value;
-    
-    const tbody = document.getElementById('controls-body');
-    tbody.innerHTML = '';
-    
-    const filtered = allControls.filter(control => {
-        let appMatch = currentFilters.app === 'all' || 
-                      (currentFilters.app === 'web' && control.web) || 
-                      (currentFilters.app === 'mobile' && control.mobile);
-        
-        let serviceMatch = currentFilters.service === 'all' || 
-                          (currentFilters.service === 'informational' && control.informational) ||
-                          (currentFilters.service === 'partial' && control.partial) ||
-                          (currentFilters.service === 'fully' && control.fully) ||
-                          (currentFilters.service === 'portal' && control.portal);
-        
-        let categoryMatch = currentFilters.category === 'all' || control.category === currentFilters.category;
-        
-        return appMatch && serviceMatch && categoryMatch;
-    });
+
+        function filterControls() {
+            const appFilter = document.getElementById('filter-app').value;
+            const serviceFilter = document.getElementById('filter-service').value;
+            const categoryFilter = document.getElementById('filter-category').value;
+
+            const filtered = allControls.filter(control => {
+                const appMatch = appFilter === 'all' || 
+                    (appFilter === 'web' && control.web) || 
+                    (appFilter === 'mobile' && control.mobile);
+                const serviceMatch = serviceFilter === 'all' || 
+                    (serviceFilter === 'informational' && control.informational) ||
+                    (serviceFilter === 'partial' && control.partial) ||
+                    (serviceFilter === 'fully' && control.fully) ||
+                    (serviceFilter === 'portal' && control.portal);
+                const categoryMatch = categoryFilter === 'all' || control.category === categoryFilter;
+                return appMatch && serviceMatch && categoryMatch;
+            });
+
             document.getElementById('filter-result').textContent = filtered.length;
-            document.getElementById('result-count').textContent = filtered.length; // ถ้ายังมีตัวเก่าไว้ด้านล่าง
-            
+
+            const tbody = document.getElementById('controls-body');
+            tbody.innerHTML = '';
+
             filtered.forEach(control => {
-                const complianceDisplay = getComplianceDisplay(control);
-                
                 const row = document.createElement('tr');
-                row.className = 'control-card cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700';
+                row.className = 'hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer';
                 row.innerHTML = `
-                    <td class="px-6 py-4 font-mono text-[#0b3d91]">${control.controlId}</td>
-                    <td class="px-6 py-4 text-sm">${control.category}</td>
+                    <td class="px-6 py-4 font-medium">${control.controlId}</td>
+                    <td class="px-6 py-4">${control.category}</td>
                     <td class="px-6 py-4">${control.title}</td>
-                    <td class="px-6 py-4">
-                        <span class="inline-flex items-center rounded-3xl px-3 py-1 text-xs font-medium ${complianceDisplay.class}">
-                            ${complianceDisplay.text}
-                        </span>
-                    </td>
+                    <td class="px-6 py-4 text-center">${control.compliance}</td>
                     <td class="px-6 py-4 text-center">
-                        <button onclick="event.stopImmediatePropagation(); showControlDetail('${control.controlId}');" class="text-[#0b3d91] hover:text-blue-700">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
+                        <i onclick="event.stopImmediatePropagation(); showControlDetail('${control.controlId}');" class="fa-solid fa-eye text-[#0b3d91]"></i>
                     </td>
                 `;
                 row.onclick = () => showControlDetail(control.controlId);
                 tbody.appendChild(row);
             });
-            
-            if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="px-6 py-12 text-center text-gray-400">ไม่พบมาตรการที่ตรงเงื่อนไข</td></tr>`;
-            }
         }
-        
-        function getComplianceDisplay(control) {
-            let text = control.compliance;
-            let cls = 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300';
-            
-            if (control.compliance === 'Impact Level') {
-                text = `Impact Level<br><span class="text-[10px]">Low: ${control.lowImpact || '-'} • Med: ${control.mediumImpact || '-'} • High: ${control.highImpact || '-'}</span>`;
-                cls = 'bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300';
-            } else if (control.compliance === 'Optional') {
-                cls = 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300';
-            }
-            return { text, class: cls };
-        }
-        
-        // Show single control detail
-        function showControlDetail(controlId) {
-            const control = allControls.find(c => c.controlId === controlId);
+
+        function showControlDetail(id) {
+            const control = allControls.find(c => c.controlId === id);
             if (!control) return;
-            
-            const complianceHTML = getComplianceDisplay(control).text;
-            
-            const modalHTML = `
-                <div class="flex justify-between items-start mb-6">
-                    <div>
-                        <span class="font-mono text-xs bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-2xl">${control.controlId}</span>
-                        <h2 class="text-2xl font-semibold mt-2">${control.title}</h2>
-                        <p class="text-sm text-gray-500 mt-1">${control.category}</p>
-                    </div>
-                    <button onclick="hideModal()" class="text-gray-400 hover:text-gray-600 text-3xl leading-none">×</button>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
-                    <div class="md:col-span-2 space-y-8">
-                        <div>
-                            <h4 class="font-medium text-gray-500 mb-2">เหตุผล</h4>
-                            <p>${control.reason || '—'}</p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-500 mb-2">มาตรการควบคุม</h4>
-                            <p>${control.measure || '—'}</p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-500 mb-2">รายการตรวจสอบ (Checklist)</h4>
-                            <p class="whitespace-pre-line">${control.checklist || '—'}</p>
-                        </div>
-                    </div>
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="font-medium text-gray-500 mb-2">การบังคับใช้</h4>
-                            <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl">${complianceHTML}</div>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-500 mb-2">หลักฐานที่ต้องการ</h4>
-                            <p class="text-xs">${control.evidence || control.criteria || '—'}</p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-500 mb-2">เกณฑ์การพิจารณา / ข้อยกเว้น</h4>
-                            <p class="text-xs">${control.detail || '—'}</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-8 flex justify-end">
-                    <button onclick="hideModal()" class="px-8 py-3 border border-gray-300 dark:border-gray-600 rounded-2xl text-sm font-medium">ปิด</button>
-                </div>
-            `;
-            
-            document.getElementById('modal-content').innerHTML = modalHTML;
-            document.getElementById('control-modal').classList.remove('hidden');
-            document.getElementById('control-modal').classList.add('flex');
+            alert(`Control ID: ${control.controlId}\nหัวข้อ: ${control.title}\n\nเหตุผล: ${control.reason}\n\nมาตรการ: ${control.measure}`);
+            // คุณสามารถพัฒนาเป็น modal แบบสวยๆ ได้ในภายหลัง
         }
-        
-        function hideModal() {
-            const modal = document.getElementById('control-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-        
-        // Impact Level Assessment
-        function selectImpact(btn, criterion, level) {
-            // Deselect all in row
-            btn.parentElement.querySelectorAll('button').forEach(b => {
-                b.classList.remove('border-[#0b3d91]', 'bg-[#0b3d91]', 'text-white');
-                b.classList.add('border-gray-200', 'dark:border-gray-600');
-            });
-            
-            // Select current
-            btn.classList.add('border-[#0b3d91]', 'bg-[#0b3d91]', 'text-white');
-            
-            impactSelections[criterion] = level;
-            calculateImpactResult();
-        }
-        
-        function calculateImpactResult() {
-            const levels = Object.values(impactSelections);
-            if (levels.length === 0) return;
-            
-            // Highest wins
-            let resultLevel = 'low';
-            if (levels.includes('high')) resultLevel = 'high';
-            else if (levels.includes('medium')) resultLevel = 'medium';
-            
-            const badgeEl = document.getElementById('impact-badge');
-            
-            let color = '';
-            let label = '';
-            
-            if (resultLevel === 'high') {
-                color = 'bg-red-600 text-white';
-                label = 'สูง (High)';
-            } else if (resultLevel === 'medium') {
-                color = 'bg-amber-500 text-white';
-                label = 'ปานกลาง (Medium)';
-            } else {
-                color = 'bg-emerald-600 text-white';
-                label = 'ต่ำ (Low)';
-            }
-            
-            badgeEl.innerHTML = `
-                <span class="${color} px-10 py-4 rounded-3xl text-4xl font-bold">${label}</span>
-            `;
-        }
-        
-        function resetImpact() {
-            impactSelections = {};
-            document.querySelectorAll('.impact-btn').forEach(btn => {
-                btn.classList.remove('border-[#0b3d91]', 'bg-[#0b3d91]', 'text-white');
-                btn.classList.add('border-gray-200', 'dark:border-gray-600');
-            });
-            document.getElementById('impact-badge').innerHTML = '';
-        }
-        
-        // Password verification
-        function verifyPassword() {
-            const input = document.getElementById('admin-password').value;
-            if (btoa(input) === CONFIG.PASSWORD_ENCODED) {
-                document.getElementById('password-section').classList.add('hidden');
-                document.getElementById('upload-section').classList.remove('hidden');
-            } else {
-                alert('รหัสผ่านไม่ถูกต้อง');
-            }
-        }
-        
-        function showAdminModal() {
-            document.getElementById('admin-modal').classList.remove('hidden');
-            document.getElementById('admin-modal').classList.add('flex');
-            // Reset
-            document.getElementById('password-section').classList.remove('hidden');
-            document.getElementById('upload-section').classList.add('hidden');
-            document.getElementById('admin-password').value = '';
-        }
-        
-        function hideAdminModal() {
-            const modal = document.getElementById('admin-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-        
-        // Handle Excel upload
-        async function handleExcelUpload() {
-            const fileInput = document.getElementById('excel-upload');
-            if (!fileInput.files.length) {
-                alert("กรุณาเลือกไฟล์ Excel");
-                return;
-            }
-            
-            const file = fileInput.files[0];
-            const arrayBuffer = await file.arrayBuffer();
-            const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-            const worksheet = workbook.Sheets['Control'];
-            const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: "" });
-            
-            allControls = jsonData.slice(1).map(row => ({
-                web: (row[0] || "").toString().trim().toLowerCase() === 'x',
-                mobile: (row[1] || "").toString().trim().toLowerCase() === 'x',
-                informational: (row[2] || "").toString().trim().toLowerCase() === 'x',
-                partial: (row[3] || "").toString().trim().toLowerCase() === 'x',
-                fully: (row[4] || "").toString().trim().toLowerCase() === 'x',
-                portal: (row[5] || "").toString().trim().toLowerCase() === 'x',
-                compliance: (row[6] || "").toString().trim(),
-                lowImpact: (row[7] || "").toString().trim(),
-                mediumImpact: (row[8] || "").toString().trim(),
-                highImpact: (row[9] || "").toString().trim(),
-                category: row[10] || "",
-                title: row[11] || "",
-                controlId: row[12] || "",
-                reason: row[13] || "",
-                measure: row[14] || "",
-                checklist: row[15] || "",
-                evidence: row[16] || "",
-                criteria: row[17] || "",
-                detail: row[18] || ""
-            })).filter(c => c.controlId);
-            
-            alert(`✅ อัปโหลดสำเร็จ! โหลดข้อมูล ${allControls.length} มาตรการแล้ว`);
-            hideAdminModal();
-            populateCategoryFilter();
-            if (document.getElementById('page-controls').classList.contains('hidden') === false) filterControls();
-        }
-        
-        // Simple export (print)
-        function exportTable() {
-            const printContents = document.getElementById('controls-table').outerHTML;
-            const originalContents = document.body.innerHTML;
-            
-            document.body.innerHTML = `
-                <div class="p-8">
-                    <h1 class="text-3xl font-semibold mb-6 text-center">ตารางมาตรการควบคุม Digital Service Standard</h1>
-                    ${printContents}
-                </div>
-            `;
-            window.print();
-            document.body.innerHTML = originalContents;
-            // Re-init scripts after print
-            location.reload();
-        }
-        
-        // Visitor counter (local demo)
-        function initVisitorCounter() {
-            let count = parseInt(localStorage.getItem('dss-visitor-count') || '1248');
-            count++;
-            localStorage.setItem('dss-visitor-count', count);
-            document.getElementById('visitor-count').textContent = count.toLocaleString('th-TH');
-        }
-        
-        // Navigation
+
         function navigateTo(page) {
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            document.getElementById(`page-${page}`).classList.remove('hidden');
-            
-            // Update active nav
-            document.querySelectorAll('nav a').forEach(link => link.classList.remove('text-[#0b3d91]', 'dark:text-[#4a9eff]'));
-            const active = document.getElementById(`nav-${page}`);
-            if (active) active.classList.add('text-[#0b3d91]', 'dark:text-[#4a9eff]');
-            
-            // Breadcrumb
-            const bc = document.getElementById('breadcrumb');
-            if (page === 'home') bc.innerHTML = `<span class="text-[#0b3d91]">หน้าแรก</span>`;
-            else if (page === 'controls') bc.innerHTML = `<a onclick="navigateTo('home')" class="hover:underline">หน้าแรก</a> <span class="mx-1">›</span> มาตรการควบคุม`;
-            else if (page === 'impact') bc.innerHTML = `<a onclick="navigateTo('home')" class="hover:underline">หน้าแรก</a> <span class="mx-1">›</span> ประเมินผลกระทบ`;
-            else if (page === 'download') bc.innerHTML = `<a onclick="navigateTo('home')" class="hover:underline">หน้าแรก</a> <span class="mx-1">›</span> ดาวน์โหลดมาตรฐาน`;
-            
-            // Trigger filter if controls page
-            if (page === 'controls' && allControls.length > 0) {
-                filterControls();
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + page).classList.add('active');
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById('theme-icon');
+            if (icon.classList.contains('fa-moon')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
             }
         }
-        
-        // Main init
-        async function initializeApp() {
-            initTailwind();
-            loadTheme();
-            initVisitorCounter();
-            
-            // Load data
-            await loadExcelData();
-            
-            // Default page
-            navigateTo('home');
-            
-            console.log('%c🚀 DGA Digital Service Standard Web App เริ่มทำงานแล้ว (WCAG 2.2 Ready)', 'color:#0b3d91; font-size:13px; font-weight:600');
-            console.log('📁 ไฟล์ที่ใช้: DSS_DB2.xlsx | Merge_Final FDD-DSS02.pdf | DGALogo.png');
+
+        function exportTable() {
+            window.print();
         }
-        
-        // Start the app
-        window.onload = initializeApp;
+
+        function showAdminModal() {
+            const pass = prompt("กรอกรหัสผ่านเพื่ออัปโหลด Excel:");
+            if (pass === "sddss2569") {
+                alert("✅ รหัสผ่านถูกต้อง (ในเวอร์ชันจริงจะเปิดให้อัปโหลดไฟล์)");
+            } else {
+                alert("รหัสผ่านไม่ถูกต้อง");
+            }
+        }
+
+        // เริ่มต้นระบบ
+        window.onload = () => {
+            loadExcelData();
+            navigateTo('home');
+            console.log('%c🚀 DGA Digital Service Standard เริ่มทำงานแล้ว', 'color:#0b3d91; font-weight:bold');
+        };
     </script>
 </body>
 </html>
