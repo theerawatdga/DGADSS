@@ -49,7 +49,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-x-3">
-                    <img src="DGALogo.png" alt="DGA" class="h-10">
+                    <img id="dga-logo" src="DGALogo.png" alt="DGA" class="h-10">
                     <div>
                         <h1 class="text-xl font-semibold text-[#0b3d91]">Digital Service Standard</h1>
                         <p class="text-xs -mt-1">มสพร. 16-2569</p>
@@ -531,15 +531,17 @@ function resetImpact() {
     document.getElementById('impact-badge').innerHTML = '';
 }
 
-           // ==================== DARK MODE ====================
+
+        // ==================== DARK MODE + LOGO SWITCH ====================
         function initDarkMode() {
-            // ตั้งค่า Tailwind ให้ใช้ dark mode ด้วย class
             tailwind.config = { darkMode: 'class' };
 
-            // โหลดสถานะจาก localStorage
+            const logo = document.getElementById('dga-logo');
+
             if (localStorage.theme === 'dark' || 
                 (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
+                logo.src = "DGALogo-Dark.png";
                 document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
             } else {
                 document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon');
@@ -547,16 +549,20 @@ function resetImpact() {
         }
 
         function toggleDarkMode() {
+            const logo = document.getElementById('dga-logo');
+
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
                 localStorage.theme = 'light';
+                logo.src = "DGALogo.png";
                 document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon');
             } else {
                 document.documentElement.classList.add('dark');
                 localStorage.theme = 'dark';
+                logo.src = "DGALogo-Dark.png";
                 document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
             }
-        }    
+        } 
         
         // ==================== VISITOR COUNTER (CounterAPI) ====================
         async function countVisitors() {
