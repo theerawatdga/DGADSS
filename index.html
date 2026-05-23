@@ -163,35 +163,66 @@
 
         <!-- ==================== IMPACT PAGE ==================== -->
         <div id="page-impact" class="page">
-            <h1 class="text-3xl font-semibold mb-8">การประเมินระดับผลกระทบ (Impact Level)</h1>
-            <p class="text-gray-600 mb-8">อ้างอิงตามประกาศคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ พ.ศ. 2566</p>
+            <h1 class="text-3xl font-semibold mb-2">การประเมินระดับผลกระทบ (Impact Level)</h1>
+            <p class="text-gray-600 dark:text-gray-400 mb-8">อ้างอิงตามประกาศคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ เรื่อง มาตรฐานการกำหนดคุณลักษณะความมั่นคงปลอดภัยไซเบอร์ให้แก่ข้อมูลหรือระบบสารสนเทศ พ.ศ. 2566</p>
 
-            <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 grid md:grid-cols-2 gap-10">
-                <div class="space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-7 space-y-10">
+                    <!-- ด้าน 1 -->
                     <div>
-                        <label class="block font-medium mb-3">มูลค่าความเสียหายทางการเงินหรือทรัพย์สินหรือต่อชื่อเสียงของหน่วยงาน</label>
+                        <label class="block text-sm font-medium mb-4">1. มูลค่าความเสียหายทางการเงินหรือทรัพย์สินหรือต่อชื่อเสียงของหน่วยงาน</label>
                         <div class="flex gap-3">
-                            <button onclick="selectImpact(this,1,'low')" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200">ต่ำ</button>
-                            <button onclick="selectImpact(this,1,'medium')" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200">ปานกลาง</button>
-                            <button onclick="selectImpact(this,1,'high')" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200">สูง</button>
+                            <button onclick="selectImpact(this, 1, 'low')" data-criterion="1" data-level="low" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">ต่ำ</button>
+                            <button onclick="selectImpact(this, 1, 'medium')" data-criterion="1" data-level="medium" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">ปานกลาง</button>
+                            <button onclick="selectImpact(this, 1, 'high')" data-criterion="1" data-level="high" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">สูง</button>
                         </div>
                     </div>
-                    <!-- อีก 3 ด้าน เหมือนเดิม -->
+
+                    <!-- ด้าน 2 -->
                     <div>
-                        <label class="block font-medium mb-3">จำนวนของผู้ใช้บริการที่อาจได้รับอันตราย</label>
+                        <label class="block text-sm font-medium mb-4">2. จำนวนของผู้ใช้บริการของหน่วยงานบุคลากรของหน่วยงานหรือประชาชนที่อาจได้รับอันตรายต่อชีวิต ร่างกาย อนามัย ทรัพย์สิน หรือความเสียหายอื่นใด</label>
                         <div class="flex gap-3">
-                            <button onclick="selectImpact(this,2,'low')" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200">ต่ำ</button>
-                            <button onclick="selectImpact(this,2,'medium')" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200">ปานกลาง</button>
-                            <button onclick="selectImpact(this,2,'high')" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200">สูง</button>
+                            <button onclick="selectImpact(this, 2, 'low')" data-criterion="2" data-level="low" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">ต่ำ</button>
+                            <button onclick="selectImpact(this, 2, 'medium')" data-criterion="2" data-level="medium" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">ปานกลาง</button>
+                            <button onclick="selectImpact(this, 2, 'high')" data-criterion="2" data-level="high" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">สูง</button>
                         </div>
                     </div>
-                    <!-- ทำต่ออีก 2 ด้าน (คุณสามารถขยายได้) -->
+
+                    <!-- ด้าน 3 -->
+                    <div>
+                        <label class="block text-sm font-medium mb-4">3. ความสามารถในการดำเนินการตามหน้าที่ของหน่วยงาน</label>
+                        <div class="flex gap-3">
+                            <button onclick="selectImpact(this, 3, 'low')" data-criterion="3" data-level="low" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">ต่ำ</button>
+                            <button onclick="selectImpact(this, 3, 'medium')" data-criterion="3" data-level="medium" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">ปานกลาง</button>
+                            <button onclick="selectImpact(this, 3, 'high')" data-criterion="3" data-level="high" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">สูง</button>
+                        </div>
+                    </div>
+
+                    <!-- ด้าน 4 -->
+                    <div>
+                        <label class="block text-sm font-medium mb-4">4. ความมั่นคงของรัฐและความสงบเรียบร้อยภายในประเทศ</label>
+                        <div class="flex gap-3">
+                            <button onclick="selectImpact(this, 4, 'low')" data-criterion="4" data-level="low" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">ต่ำ</button>
+                            <button onclick="selectImpact(this, 4, 'medium')" data-criterion="4" data-level="medium" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">ปานกลาง</button>
+                            <button onclick="selectImpact(this, 4, 'high')" data-criterion="4" data-level="high" class="impact-btn flex-1 py-4 rounded-2xl border-2 border-gray-200 text-center text-sm font-medium hover:border-[#0b3d91]">สูง</button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 flex flex-col items-center justify-center">
-                    <h3 class="font-semibold mb-6">สรุปผลการประเมิน</h3>
-                    <div id="impact-result" class="text-center"></div>
-                    <button onclick="resetImpact()" class="mt-8 text-sm text-gray-500 hover:text-gray-700">รีเซ็ตการประเมิน</button>
+                <!-- สรุปผล -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 h-full flex flex-col">
+                        <h3 class="font-semibold text-lg mb-6">สรุปผลการประเมิน</h3>
+                        <div id="impact-result" class="flex-1 flex items-center justify-center text-center">
+                            <div class="text-center">
+                                <div id="impact-badge" class="inline-flex items-center px-10 py-4 text-4xl font-bold rounded-3xl mb-6"></div>
+                                <p class="text-sm text-gray-500">ระดับผลกระทบสูงสุดจากทุกด้านจะถูกเลือกเป็นระดับผลกระทบโดยรวมของบริการ</p>
+                            </div>
+                        </div>
+                        <button onclick="resetImpact()" class="mt-auto text-sm text-gray-500 hover:text-gray-700 flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-rotate-right"></i> รีเซ็ตการประเมิน
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -369,11 +400,61 @@
             else alert("รหัสผ่านไม่ถูกต้อง");
         }
 
-        // Impact Level (ตัวอย่าง)
-        function selectImpact(btn, no, level) {
-            // logic เดียวกับก่อนหน้า (สามารถขยายได้)
-            console.log("เลือกด้าน", no, level);
-        }
+        let impactSelections = {};
+
+function selectImpact(btn, criterion, level) {
+    // ลบ highlight ปุ่มอื่นในแถวเดียวกัน
+    const row = btn.parentElement;
+    row.querySelectorAll('button').forEach(b => {
+        b.classList.remove('border-[#0b3d91]', 'bg-[#0b3d91]', 'text-white');
+        b.classList.add('border-gray-200', 'dark:border-gray-600');
+    });
+
+    // highlight ปุ่มที่เลือก
+    btn.classList.add('border-[#0b3d91]', 'bg-[#0b3d91]', 'text-white');
+
+    impactSelections[criterion] = level;
+    calculateImpactResult();
+}
+
+function calculateImpactResult() {
+    const levels = Object.values(impactSelections);
+    if (levels.length === 0) {
+        document.getElementById('impact-badge').innerHTML = '';
+        return;
+    }
+
+    let resultLevel = 'low';
+    if (levels.includes('high')) resultLevel = 'high';
+    else if (levels.includes('medium')) resultLevel = 'medium';
+
+    const badge = document.getElementById('impact-badge');
+    let color = '', label = '';
+
+    if (resultLevel === 'high') {
+        color = 'bg-red-600 text-white';
+        label = 'สูง (High)';
+    } else if (resultLevel === 'medium') {
+        color = 'bg-amber-500 text-white';
+        label = 'ปานกลาง (Medium)';
+    } else {
+        color = 'bg-emerald-600 text-white';
+        label = 'ต่ำ (Low)';
+    }
+
+    badge.innerHTML = `<span class="${color} px-10 py-4 rounded-3xl text-4xl font-bold">${label}</span>`;
+}
+
+function resetImpact() {
+    impactSelections = {};
+    document.querySelectorAll('.impact-btn').forEach(btn => {
+        btn.classList.remove('border-[#0b3d91]', 'bg-[#0b3d91]', 'text-white');
+        btn.classList.add('border-gray-200', 'dark:border-gray-600');
+    });
+    document.getElementById('impact-badge').innerHTML = '';
+}
+
+        
 
         window.onload = () => {
             loadExcelData();
