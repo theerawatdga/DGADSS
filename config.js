@@ -1,14 +1,12 @@
 // =============================================
 // DGA Digital Service Standard - CONFIG
-// เก็บรหัสผ่านแบบเข้ารหัส (Base64)
 // =============================================
 
+// config.js
 const APP_CONFIG = {
-    // รหัสผ่าน: (เข้ารหัสเพื่อป้องกันการเห็นรหัสชัด ๆ)
-    uploadPasswordHash: "c2Rkc3MyNTY5"
+    uploadPasswordHash: "c2Rkc3MyNTY5"   // Base64
 };
 
-// ฟังก์ชันตรวจสอบรหัสผ่าน
-function checkUploadPassword(inputPassword) {
-    return btoa(inputPassword) === APP_CONFIG.uploadPasswordHash;
+function checkUploadPassword(input) {
+    return btoa(input) === APP_CONFIG.uploadPasswordHash;
 }
