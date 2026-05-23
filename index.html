@@ -530,27 +530,22 @@ function resetImpact() {
         
         // ==================== VISITOR COUNTER (CounterAPI) ====================
         async function countVisitors() {
-            const ENDPOINT = "https://api.counterapi.dev/v2/theerawatdgas-team-4209/dgadss-counter";
-            const API_KEY = "ut_cUMTOlRPTtZUuwWkMBuNahUhP96sI9gM6fkgNSzZ";   // ← เปลี่ยนเป็น API Key ของคุณ
+            const NAMESPACE = "theerawatdga.github.io";
+            const COUNTER_NAME = "dgadss-counter";     // สามารถเปลี่ยนชื่อได้
 
             try {
-                const response = await fetch(ENDPOINT, {
-                    method: 'POST',                    // CounterAPI.dev ใช้ POST สำหรับ increment
-                    headers: {
-                        'Authorization': `Bearer ${API_KEY}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-
+                const response = await fetch(
+                    `https://countapi.mileshilliard.com/hit/${NAMESPACE}/${COUNTER_NAME}`
+                );
+                
                 const data = await response.json();
                 
-                // แสดงผลตัวเลข
-                const count = data.value || data.count || 1284;
-                document.getElementById('visitor-count').textContent = 
-                    count.toLocaleString('th-TH');
+                if (data && data.value !== undefined) {
+                    document.getElementById('visitor-count').textContent = 
+                        data.value.toLocaleString('th-TH');
+                }
             } catch (error) {
-                console.error("CounterAPI Error:", error);
-                // กรณี error ใช้ค่า fallback
+                console.log("CounterAPI ใช้งานไม่ได้ชั่วคราว");
                 document.getElementById('visitor-count').textContent = "1,284";
             }
         }
