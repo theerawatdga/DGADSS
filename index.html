@@ -367,8 +367,8 @@
         let allControls = [];
         let currentFilters = {app:'all', service:'all', category:'all'};
 
-        async function loadExcelData() {
-        try {
+       async function loadExcelData() {
+    try {
         const response = await fetch('DSS_DB2.xlsx');
         const arrayBuffer = await response.arrayBuffer();
         const workbook = XLSX.read(arrayBuffer, { type: 'array' });
@@ -392,7 +392,8 @@
             reason: row[13] || "",
             measure: row[14] || "",
             checklist: row[15] || "",
-            evidence: row[16] || ""
+            evidence: row[16] || "",
+            detail: row[17] || ""          // ← เพิ่มช่องนี้ (เกณฑ์การพิจารณา / ข้อยกเว้น)
         })).filter(c => c.controlId);
 
         populateCategoryFilter();
@@ -401,7 +402,6 @@
         console.error("โหลด Excel ล้มเหลว", err);
     }
 }
-
         function populateCategoryFilter() {
             const select = document.getElementById('filter-category');
             select.innerHTML = '<option value="all">หมวดหมู่ - ทั้งหมด</option>';
@@ -499,15 +499,29 @@ function showControlDetail(id) {
                     <p class="whitespace-pre-line">${control.checklist || '—'}</p>
                 </div>
             </div>
-            <div>
-                <h4 class="font-medium text-gray-500 mb-3">การบังคับใช้ (Compliance)</h4>
-                ${control.compliance === "Impact Level" 
-                    ? `<div class="space-y-3">
-                        <div class="flex justify-between"><span>Low Impact</span><span class="font-semibold">${control.lowImpact || '-'}</span></div>
-                        <div class="flex justify-between"><span>Medium Impact</span><span class="font-semibold">${control.mediumImpact || '-'}</span></div>
-                        <div class="flex justify-between"><span>High Impact</span><span class="font-semibold">${control.highImpact || '-'}</span></div>
-                       </div>` 
-                    : `<p class="text-xl font-semibold">${control.compliance}</p>`}
+            <div class="space-y-8">
+                <div>
+                    <h4 class="font-medium text-gray-500 mb-3">การบังคับใช้ (Compliance)</h4>
+                    ${control.compliance === "Impact Level" 
+                        ? `<div class="space-y-3">
+                            <div class="flex justify-between"><span>Low Impact</span><span class="font-semibold">${control.lowImpact || '-'}</span></div>
+                            <div class="flex justify-between"><span>Medium Impact</span><span class="font-semibold">${control.mediumImpact || '-'}</span></div>
+                            <div class="flex justify-between"><span>High Impact</span><span class="font-semibold">${control.highImpact || '-'}</span></div>
+                           </div>` 
+                        : `<p class="text-xl font-semibold">${control.compliance}</p>`}
+                </div>
+
+                <!-- หลักฐาน -->
+                <div>
+                    <h4 class="font-medium text-gray-500 mb-2">หลักฐานที่ต้องการ</h4>
+                    <p class="text-sm leading-relaxed">${control.evidence || '—'}</p>
+                </div>
+
+                <!-- เกณฑ์การพิจารณา / ข้อยกเว้น -->
+                <div>
+                    <h4 class="font-medium text-gray-500 mb-2">เกณฑ์การพิจารณา / ข้อยกเว้น</h4>
+                    <p class="text-sm leading-relaxed">${control.detail || '—'}</p>
+                </div>
             </div>
         </div>
     `;
