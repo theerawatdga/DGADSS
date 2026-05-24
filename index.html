@@ -99,10 +99,10 @@
                     <i class="fa-solid fa-eye mr-1"></i>
                     <span id="visitor-count">1,284</span>
                 </div>
-
-                <button onclick="showAdminModal()" class="flex items-center gap-x-2 bg-[#0b3d91] text-white px-4 py-2 rounded-2xl hover:bg-[#0a2e70] text-sm font-medium">
-                    <i class="fa-solid fa-upload"></i>
-                    <span class="hidden sm:inline">ส่งผลการประเมิน</span>
+                
+                <button onclick="comingSoon()" class="flex items-center gap-x-2 bg-[#0b3d91] text-white px-4 py-2 rounded-2xl hover:bg-[#0a2e70] text-sm font-medium">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span class="hidden sm:inline">ประเมินตนเอง</span>
                 </button>
 
                 <!-- Hamburger Menu -->
@@ -546,8 +546,8 @@ function showControlDetail(id) {
 
         function exportTable() { window.print(); }
 
-        function showAdminModal() {
-            alert("🚀 ฟังก์ชันอัปโหลดแบบประเมินตนเอง \n\nจะเปิดให้ใช้งานในเวอร์ชันถัดไป\n(กำลังพัฒนา)");
+        function comingSoon() {
+                alert("🚀 ฟังก์ชันประเมินตนเอง\n\nจะเปิดให้ใช้งานในเวอร์ชันถัดไป\n(กำลังพัฒนา)");
         }
 
         let impactSelections = {};
